@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={nunito.variable}>
+      <body className={`${nunito.variable} font-sans`}>
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
