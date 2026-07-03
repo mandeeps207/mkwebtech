@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -26,8 +27,10 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-foreground text-sm font-bold text-background">MK</span>
-          <span>MK WebTech</span>
+          <span className="relative block h-10 w-36">
+            <Image src="/logo.jpg" alt="MK WebTech" fill className="object-contain object-left dark:hidden" priority sizes="144px" />
+            <Image src="/logo-dark.jpg" alt="MK WebTech" fill className="hidden object-contain object-left dark:block" priority sizes="144px" />
+          </span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {links.map(([label, href]) => (

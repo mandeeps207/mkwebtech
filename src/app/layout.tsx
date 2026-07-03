@@ -15,6 +15,13 @@ export const metadata: Metadata = {
     template: "%s | MK WebTech"
   },
   description: "Premium Shopify apps and WordPress plugins for growing commerce teams.",
+  icons: {
+    icon: [
+      { url: "/logo.jpg", type: "image/jpeg" }
+    ],
+    shortcut: "/logo.jpg",
+    apple: "/logo.jpg"
+  },
   alternates: { canonical: "/" },
   openGraph: {
     title: "MK WebTech",

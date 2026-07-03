@@ -13,7 +13,7 @@ export default function PrivacyPage() {
         <h2>Retention</h2>
         <p>We retain operational records only as long as needed for support, security, compliance, and product improvement.</p>
         <h2>Contact</h2>
-        <p>Questions about privacy can be sent to hello@mkwebtech.com.</p>
+        <p>Questions about privacy can be sent to mkwebtecindia@gmail.com</p>
       </div>
     </section>
   );

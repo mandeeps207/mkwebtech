@@ -13,7 +13,7 @@ export default function ContactPage() {
           <h2 className="font-semibold">Response times</h2>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">We typically reply within one business day. Product customers receive priority support through their plan.</p>
           <h2 className="mt-8 font-semibold">Email</h2>
-          <p className="mt-3 text-sm text-muted-foreground">hello@mkwebtech.com</p>
+          <p className="mt-3 text-sm text-muted-foreground">mkwebtecindia@gmail.com</p>
         </div>
         <ContactForm />
       </div>

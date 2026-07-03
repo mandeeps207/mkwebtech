@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
@@ -12,8 +13,10 @@ export function Footer() {
       <div className="container grid gap-10 py-12 md:grid-cols-[1.5fr_2fr]">
         <div>
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-foreground text-sm font-bold text-background">MK</span>
-            MK WebTech
+            <span className="relative block h-10 w-36">
+              <Image src="/logo.jpg" alt="MK WebTech" fill className="object-contain object-left dark:hidden" sizes="144px" />
+              <Image src="/logo-dark.jpg" alt="MK WebTech" fill className="hidden object-contain object-left dark:block" sizes="144px" />
+            </span>
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
             Premium Shopify apps and WordPress plugins built for fast teams, better stores, and resilient commerce workflows.
