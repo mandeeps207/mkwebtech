@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
-  { title: "Company", links: [["About", "/about"], ["Contact", "/contact"], ["Pricing", "/pricing"]] },
-  { title: "Resources", links: [["Docs", "/docs"], ["Blog", "/blog"], ["Changelog", "/changelog"]] },
+  { title: "Company", links: [["About", "/about"], ["Contact", "/contact"]] },
+  { title: "Resources", links: [["Docs", "/docs"], ["Changelog", "/changelog"]] },
   { title: "Legal", links: [["Privacy", "/privacy"], ["Terms", "/terms"]] }
 ];
 

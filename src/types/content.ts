@@ -23,20 +23,6 @@ export type Product = {
   content: string;
 };
 
-export type BlogPost = {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  author: string;
-  authorRole?: string;
-  category: string;
-  tags: string[];
-  image: string;
-  content: string;
-  readingTime: string;
-};
-
 export type DocPage = {
   slug: string;
   title: string;

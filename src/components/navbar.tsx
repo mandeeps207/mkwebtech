@@ -13,8 +13,6 @@ const links = [
   ["Home", "/"],
   ["Products", "/products"],
   ["Documentation", "/docs"],
-  ["Blog", "/blog"],
-  ["Pricing", "/pricing"],
   ["About", "/about"],
   ["Contact", "/contact"]
 ] as const;

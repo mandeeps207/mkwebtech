@@ -3,8 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { BlogPost, Product } from "@/types/content";
-import { formatDate } from "@/lib/utils";
+import type { Product } from "@/types/content";
 
 export function FeatureCard({ icon: Icon, title, description }: { icon: React.ElementType; title: string; description: string }) {
   return (
@@ -29,21 +28,6 @@ export function ProductCard({ product }: { product: Product }) {
           <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:text-primary" />
         </div>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">{product.description}</p>
-      </div>
-    </Link>
-  );
-}
-
-export function BlogCard({ post }: { post: BlogPost }) {
-  return (
-    <Link href={`/blog/${post.slug}`} className="group overflow-hidden rounded-lg border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
-      <div className="relative aspect-[16/9] bg-muted">
-        <Image src={post.image} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(min-width: 768px) 33vw, 100vw" />
-      </div>
-      <div className="p-5">
-        <div className="text-xs text-muted-foreground">{formatDate(post.date)} · {post.readingTime}</div>
-        <h3 className="mt-3 text-lg font-semibold">{post.title}</h3>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">{post.description}</p>
       </div>
     </Link>
   );
