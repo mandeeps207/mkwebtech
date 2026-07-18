@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Admin settings for swatches</title>
+  <desc id="desc">A clean WordPress-style settings screen for variation swatch controls.</desc>
+  <rect width="1200" height="675" fill="#f8fafc"/>
+  <rect x="84" y="70" width="1032" height="535" rx="18" fill="#fff" stroke="#dbe3ed"/>
+  <rect x="84" y="70" width="230" height="535" rx="18" fill="#111827"/>
+  <text x="126" y="134" fill="#fff" font-family="Arial, sans-serif" font-size="22" font-weight="800">MK Swatches</text>
+  <g fill="#cbd5e1" font-family="Arial, sans-serif" font-size="16">
+    <text x="126" y="200">Dashboard</text>
+    <text x="126" y="248">General</text>
+    <text x="126" y="296">Style</text>
+    <text x="126" y="344">Archive</text>
+    <text x="126" y="392">Product</text>
+  </g>
+  <rect x="342" y="116" width="704" height="54" rx="10" fill="#f1f5f9"/>
+  <text x="368" y="151" fill="#111827" font-family="Arial, sans-serif" font-size="23" font-weight="800">Style Settings</text>
+  <g transform="translate(342 214)">
+    <rect width="704" height="92" rx="12" fill="#fff" stroke="#e2e8f0"/>
+    <text x="26" y="35" fill="#111827" font-family="Arial, sans-serif" font-size="17" font-weight="700">Swatch shape</text>
+    <rect x="470" y="24" width="86" height="36" rx="18" fill="#111827"/>
+    <text x="493" y="48" fill="#fff" font-family="Arial, sans-serif" font-size="14">Round</text>
+    <rect x="570" y="24" width="86" height="36" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="595" y="48" fill="#475569" font-family="Arial, sans-serif" font-size="14">Square</text>
+  </g>
+  <g transform="translate(342 330)">
+    <rect width="704" height="92" rx="12" fill="#fff" stroke="#e2e8f0"/>
+    <text x="26" y="35" fill="#111827" font-family="Arial, sans-serif" font-size="17" font-weight="700">Unavailable options</text>
+    <rect x="470" y="24" width="54" height="36" rx="18" fill="#14b8a6"/>
+    <circle cx="506" cy="42" r="13" fill="#fff"/>
+    <text x="540" y="48" fill="#475569" font-family="Arial, sans-serif" font-size="14">Cross out unavailable values</text>
+  </g>
+  <g transform="translate(342 446)">
+    <rect width="704" height="92" rx="12" fill="#fff" stroke="#e2e8f0"/>
+    <text x="26" y="35" fill="#111827" font-family="Arial, sans-serif" font-size="17" font-weight="700">Swatch size</text>
+    <rect x="470" y="24" width="78" height="36" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="495" y="48" fill="#111827" font-family="Arial, sans-serif" font-size="14">36</text>
+    <rect x="568" y="24" width="78" height="36" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="593" y="48" fill="#111827" font-family="Arial, sans-serif" font-size="14">36</text>
+  </g>
+</svg>
