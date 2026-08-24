@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { absoluteUrl } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next"
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
 
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
