@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const columns = [
   { title: "Company", links: [["About", "/about"], ["Contact", "/contact"]] },
-  { title: "Resources", links: [["Docs", "/docs"], ["Changelog", "/changelog"]] },
-  { title: "Legal", links: [["Privacy", "/privacy"], ["Terms", "/terms"]] }
+  { title: "Resources", links: [["Fixify", "/fixify"], ["Docs", "/docs"], ["Changelog", "/changelog"]] },
+  { title: "Legal", links: [["Privacy", "/privacy"], ["Fixify Privacy", "/fixify/privacy-policy"], ["Terms", "/terms"]] }
 ];
 
 export function Footer() {

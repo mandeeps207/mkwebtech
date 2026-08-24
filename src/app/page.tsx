@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: "Do you have any Shopify apps?",
-    answer: "Not yet. Shopify apps are planned for the future, but there are no live MK WebTech Shopify apps right now."
+    answer: "Fixify is MK WebTech's Shopify order-editing app. Its public product information and launch plans are available on the Fixify page."
   },
   {
     question: "Does CTA Studio track performance?",
@@ -144,18 +144,18 @@ export default function HomePage() {
         <div className="container grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <Badge variant="secondary">Shopify Apps</Badge>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">Shopify apps are coming soon.</h2>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">Meet Fixify for Shopify.</h2>
             <p className="mt-4 leading-7 text-muted-foreground">
-              MK WebTech does not have a live Shopify app right now. This section will be updated when the first app is ready.
+              Fixify gives eligible customers a controlled way to correct supported order details before fulfillment through Shopify Customer Accounts.
             </p>
             <Button className="mt-6" variant="outline" asChild>
-              <Link href="/products/shopify">View Shopify status</Link>
+              <Link href="/fixify">View Fixify <ArrowRight className="h-4 w-4" /></Link>
             </Button>
           </div>
           <div className="rounded-lg border border-dashed border-border bg-card p-8 shadow-sm">
-            <div className="text-sm font-medium text-muted-foreground">Current Shopify catalog</div>
-            <div className="mt-3 text-3xl font-semibold">No live apps yet</div>
-            <p className="mt-3 text-muted-foreground">No demo Shopify apps are shown because the catalog should reflect real MK WebTech products only.</p>
+            <div className="text-sm font-medium text-muted-foreground">Shopify order editing</div>
+            <div className="mt-3 text-3xl font-semibold">Fixify</div>
+            <p className="mt-3 text-muted-foreground">Merchant-controlled shipping address, variant, and quantity changes for eligible orders.</p>
           </div>
         </div>
       </section>
