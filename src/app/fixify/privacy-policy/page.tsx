@@ -21,81 +21,113 @@ export default function FixifyPrivacyPolicyPage() {
         <ArrowLeft className="h-4 w-4" /> Back to Fixify
       </Link>
       <h1 className="mt-8 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">Fixify Privacy Policy</h1>
-      <p className="mt-4 text-sm text-muted-foreground">Last updated: August 24, 2026</p>
+      <p className="mt-4 text-sm text-muted-foreground">Effective and last updated: August 26, 2026</p>
 
       <div className="prose-mk mt-8">
+        <h2>Scope</h2>
         <p>
-          This policy explains how MK WebTech processes information through Fixify, its Shopify order-editing application. Fixify integrates with Shopify and uses Shopify APIs to provide its functionality. MK WebTech operates Fixify independently and is not Shopify.
+          This policy applies to Fixify, the Shopify order-editing application operated by MK WebTech. It explains the categories of information Fixify processes, why that information is needed, and the choices available to merchants and customers. Fixify integrates with Shopify and uses Shopify APIs to provide its functionality. MK WebTech operates Fixify independently and is not Shopify.
         </p>
 
-        <h2>Information Fixify processes</h2>
-        <p>Fixify may process information needed to provide, secure, and administer order-editing functionality, including:</p>
-        <h3>Merchant and store information</h3>
+        <h2>Information processed</h2>
+        <h3>Merchant and shop information</h3>
+        <p>Fixify may process:</p>
         <ul>
-          <li>Shopify shop or store identifiers and app installation or session information.</li>
-          <li>Merchant configuration, settings, and supported editing permissions.</li>
-          <li>Billing and subscription entitlement information.</li>
+          <li>Shopify shop identity and app installation or session information.</li>
+          <li>Merchant configuration, editing permissions, and editing-window settings.</li>
+          <li>Subscription or plan status and completed order-edit activity.</li>
         </ul>
+
         <h3>Customer and order information</h3>
+        <p>To provide order editing, Fixify may process:</p>
         <ul>
-          <li>Shopify customer identifiers and the association between a customer and an order.</li>
-          <li>Shopify order identifiers, order display or reference information, order status, and fulfillment information.</li>
-          <li>Line items, selected products or variants, quantities, order totals, and currencies.</li>
+          <li>Shopify customer or Customer Account identifiers.</li>
+          <li>Order identifiers, order state, fulfillment state, and other eligibility information.</li>
+          <li>Line items, products, variants, quantities, totals, and currencies.</li>
+          <li>Customer name and shipping address when needed for an eligible shipping-address edit.</li>
         </ul>
-        <h3>Shipping information</h3>
-        <p>
-          When a customer requests an eligible shipping-address correction, Fixify may temporarily process first and last name, company where supplied, address lines, city, province or state, postal code, and country. Fixify is designed to avoid unnecessarily persisting raw shipping-address information where it is not required. It may retain privacy-reduced evidence, such as hashes or idempotency records, when needed for safe processing.
-        </p>
-        <h3>Operational records</h3>
-        <p>
-          Fixify stores or may store keyed customer references or hashes, order-associated identifiers, edit proposals, completed edit history and activity, usage and accounting records, evidence needed to complete or reconcile an operation where applicable, and webhook or idempotency records used to prevent duplicate processing.
-        </p>
         <p>
           Fixify does not currently request customer email addresses or phone numbers for its core Customer Account order-editing workflow. Shopify or a separate support interaction may process contact information under its own applicable terms and privacy practices.
+        </p>
+
+        <h3>Pseudonymous references and access records</h3>
+        <p>
+          Fixify uses pseudonymous, HMAC-based identifiers for certain stored customer and context references. Fixify also maintains metadata-only protected-data access audit records for security and compliance. These audit records identify the context and purpose of access without storing the raw protected payload.
         </p>
 
         <h2>Why information is processed</h2>
         <p>Fixify processes information to:</p>
         <ul>
-          <li>Authenticate merchants and customers and verify order ownership.</li>
-          <li>Determine whether an order and requested edit are eligible.</li>
-          <li>Enforce merchant settings and perform supported order changes.</li>
-          <li>Prevent duplicate edits and detect stale or concurrent changes.</li>
-          <li>Maintain edit history and enforce Free and Pro usage rules.</li>
-          <li>Maintain application security and respond to support requests.</li>
-          <li>Handle Shopify privacy and compliance requests.</li>
-          <li>Meet applicable legal and operational obligations.</li>
+          <li>Authenticate Shopify Customer Account requests.</li>
+          <li>Verify customer and order ownership.</li>
+          <li>Determine order and requested-edit eligibility.</li>
+          <li>Apply merchant editing permissions and editing-window rules.</li>
+          <li>Preview and execute eligible order edits.</li>
+          <li>Maintain completed edit and activity records.</li>
+          <li>Enforce billing and plan limits.</li>
+          <li>Support security, auditing, and abuse prevention.</li>
+          <li>Process privacy requests, redaction, and deletion requirements.</li>
+          <li>Provide troubleshooting and support where necessary.</li>
         </ul>
+        <p>Protected customer data is not used for advertising.</p>
+
+        <h2>Payments</h2>
+        <p>
+          Fixify does not collect or store customer payment-card credentials. The current launch product supports eligible edits that do not require an additional customer payment or refund. Fixify plan billing is administered through Shopify.
+        </p>
 
         <h2>Shopify and service providers</h2>
         <p>
-          Fixify integrates with Shopify and uses Shopify APIs and services to authenticate users, access eligible order information, and perform supported changes. Shopify processes information under its own terms and privacy practices.
+          Fixify uses Shopify APIs and platform services to authenticate requests, access eligible order information, and complete supported edits. Shopify processes information under its own terms and privacy practices.
         </p>
         <p>
-          MK WebTech uses Vercel for website and application infrastructure and may use other trusted providers for hosting, managed database services, security, and application operations. These providers receive information only as needed to perform services for MK WebTech and are subject to applicable contractual and confidentiality obligations.
-        </p>
-
-        <h2>Data retention</h2>
-        <p>
-          Retention depends on the information and why it is needed. Short-lived operational data may expire after it is no longer required. Edit and activity records may be retained to provide merchant history and application functionality. Billing and usage records may be retained for account and usage administration. Financial, operation, or idempotency evidence may be retained where needed to prevent duplicate actions or reconcile an operation.
-        </p>
-        <p>
-          Data is deleted or anonymized when required by a valid Shopify privacy request, subject to legitimate legal, security, and operational retention requirements. Shop-associated data is removed following Shopify shop-redaction requirements according to the application&apos;s implementation. Deletion may therefore take place through an established compliance process rather than immediately upon uninstall.
-        </p>
-
-        <h2>Shopify privacy requests</h2>
-        <p>
-          Fixify supports Shopify privacy and compliance workflows for access to customer-associated data, customer data deletion or redaction, and shop data deletion or redaction. Merchants and customers may also contact MK WebTech with privacy questions through the support channel below.
+          MK WebTech also uses trusted providers for application hosting, managed database hosting, security, and operational infrastructure. These providers process information only as needed to provide their services to MK WebTech and are subject to applicable contractual and confidentiality obligations. Provider certifications are not certifications of Fixify or MK WebTech.
         </p>
 
         <h2>Security</h2>
         <p>
-          Access to Fixify functionality is authenticated, and server-side authorization is used to validate access and order edits against Shopify. Fixify minimizes persisted data where practical. Secrets and session tokens are not intentionally exposed to customers. No internet service can guarantee absolute security, but MK WebTech applies safeguards appropriate to the application and the information it processes.
+          Fixify uses HTTPS/TLS for data in transit and provider-managed encryption at rest. Application secrets are managed outside customer-facing code. Shopify Customer Account session tokens authenticate customer requests, and server-side authorization validates customer identity, order ownership, eligibility, and merchant rules before an edit is completed.
+        </p>
+        <p>
+          Production access is restricted to authorized operational access. Fixify uses pseudonymous identifiers for certain stored references and maintains metadata-only protected-data access logs. No internet service can guarantee perfect security, but MK WebTech applies safeguards appropriate to the information and application.
         </p>
 
-        <h2>Your choices and contact</h2>
+        <h2>Retention</h2>
         <p>
-          For privacy questions or a request related to Fixify, use the <Link href="/contact?product=fixify">MK WebTech contact page</Link> or email <a href="mailto:mkwebtecindia@gmail.com">mkwebtecindia@gmail.com</a>. Please identify Fixify and your Shopify store, but do not send passwords, API keys, access tokens, or payment information.
+          Personal data is retained only for as long as needed for application functionality, security and audit records, operational requirements, and applicable obligations. Retention differs by record type. Short-lived request data may expire after processing, while edit activity, plan usage, security evidence, and compliance records may be retained for their relevant operational purpose.
+        </p>
+        <p>
+          Data is deleted or anonymized when required by a valid privacy request, subject to legitimate legal, security, and operational retention requirements. Shop-associated information is processed according to Shopify shop-redaction requirements and the application&apos;s applicable data-handling rules.
+        </p>
+
+        <h2>Shopify privacy requests</h2>
+        <p>
+          Fixify supports Shopify&apos;s mandatory privacy processes, including <code>customers/data_request</code>, <code>customers/redact</code>, and <code>shop/redact</code>. At a high level, these processes allow applicable customer-associated information to be identified for access or export and allow customer or shop information to be redacted or deleted according to Fixify&apos;s data-handling and retention rules.
+        </p>
+
+        <h2>Protected-data audit records</h2>
+        <p>
+          Fixify maintains metadata-only security audit records for protected customer-data access. These records use pseudonymous identifiers and do not contain customer names, shipping addresses, email addresses, phone numbers, session tokens, or raw protected payloads.
+        </p>
+
+        <h2>Data sale and advertising</h2>
+        <p>
+          Fixify does not sell merchant or customer personal data. Fixify does not use protected customer data for advertising.
+        </p>
+
+        <h2>Merchant and customer rights</h2>
+        <p>
+          Privacy requests may be initiated through the Shopify merchant and through applicable Shopify privacy mechanisms. Merchants and customers may also contact MK WebTech about access, correction, deletion, or other privacy questions. The ability to fulfill a request depends on the requester&apos;s relationship to the store, applicable Shopify processes, and relevant legal or operational requirements.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For Fixify privacy or support questions, use the <Link href="/contact?product=fixify">MK WebTech contact page</Link> or email <a href="mailto:mkwebtecindia@gmail.com">mkwebtecindia@gmail.com</a>. Please identify Fixify and your Shopify store, but do not send passwords, API keys, access tokens, payment information, or unnecessary customer/order data.
+        </p>
+
+        <h2>Policy updates</h2>
+        <p>
+          MK WebTech may update this policy when Fixify&apos;s functionality, data practices, service providers, or applicable requirements change. The effective and last-updated date at the top of this page will be revised when an update is published.
         </p>
       </div>
 

@@ -25,7 +25,7 @@ export default function ShopifyProductsPage() {
         </Badge>
         <h2 className="mt-5 text-2xl font-semibold tracking-tight">Fixify</h2>
         <p className="mt-3 text-muted-foreground">
-          Customers can make eligible shipping address, variant, and quantity changes through Shopify Customer Accounts, subject to merchant settings.
+          Customers can make eligible shipping address, same-product variant, and financially neutral quantity changes through Shopify Customer Accounts, subject to merchant settings.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild>

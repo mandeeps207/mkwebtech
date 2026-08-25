@@ -14,11 +14,11 @@ export default function ContactPage() {
         <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
           <h2 className="font-semibold">Need help with Fixify?</h2>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Use this form and select Fixify support. Include your Shopify store and a clear description of the issue, without sharing credentials or payment information.
+            Use this form and select Fixify support. Include your Shopify store domain and a clear description of the issue without sharing protected customer/order data, credentials, or payment information.
           </p>
           <Link href="/fixify" className="mt-3 inline-block text-sm font-medium underline underline-offset-4">Learn about Fixify</Link>
           <h2 className="mt-8 font-semibold">Response times</h2>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">We typically reply within one business day. Product customers receive priority support through their plan.</p>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">We typically reply within one business day.</p>
           <h2 className="mt-8 font-semibold">Email</h2>
           <p className="mt-3 text-sm text-muted-foreground"><a className="hover:text-foreground hover:underline" href="mailto:mkwebtecindia@gmail.com">mkwebtecindia@gmail.com</a></p>
         </div>

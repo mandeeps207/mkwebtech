@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 const contactSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
+  store: z.string().max(253),
   subject: z.enum(["Fixify support", "Product support", "Implementation help", "Partnership", "Other"]),
   message: z.string().min(10)
 });
@@ -21,12 +22,13 @@ export function ContactForm() {
   const isFixify = searchParams.get("product")?.toLowerCase() === "fixify";
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", subject: isFixify ? "Fixify support" : "Product support", message: "" }
+    defaultValues: { name: "", email: "", store: "", subject: isFixify ? "Fixify support" : "Product support", message: "" }
   });
 
   const submit = (values: z.infer<typeof contactSchema>) => {
     const subject = encodeURIComponent(`${values.subject} - ${values.name}`);
-    const body = encodeURIComponent(`Name: ${values.name}\nReply email: ${values.email}\n\n${values.message}`);
+    const store = values.store.trim() ? `\nStore/domain: ${values.store.trim()}` : "";
+    const body = encodeURIComponent(`Name: ${values.name}\nReply email: ${values.email}${store}\n\n${values.message}`);
     window.location.href = `mailto:mkwebtecindia@gmail.com?subject=${subject}&body=${body}`;
   };
 
@@ -41,6 +43,10 @@ export function ContactForm() {
         <label htmlFor="contact-email" className="text-sm font-medium">Email</label>
         <Input id="contact-email" autoComplete="email" placeholder="you@example.com" type="email" {...form.register("email")} />
         {form.formState.errors.email ? <p className="text-sm text-destructive">Enter a valid email address.</p> : null}
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="contact-store" className="text-sm font-medium">Store or domain <span className="font-normal text-muted-foreground">(optional)</span></label>
+        <Input id="contact-store" autoComplete="url" placeholder="your-store.myshopify.com" {...form.register("store")} />
       </div>
       <div className="space-y-2">
         <label htmlFor="contact-subject" className="text-sm font-medium">Subject</label>
@@ -61,7 +67,7 @@ export function ContactForm() {
         <Textarea id="contact-message" placeholder="Tell us about your store and how we can help" {...form.register("message")} />
         {form.formState.errors.message ? <p className="text-sm text-destructive">Enter at least 10 characters.</p> : null}
       </div>
-      <p className="text-sm leading-6 text-muted-foreground">Please do not include passwords, API keys, access tokens, or payment information.</p>
+      <p className="text-sm leading-6 text-muted-foreground">For Fixify support, describe the issue and include your Shopify store domain. Do not include customer passwords, payment details, API keys, access tokens, or other sensitive customer/order information.</p>
       <Button type="submit"><Send className="h-4 w-4" /> Open email draft</Button>
     </form>
   );

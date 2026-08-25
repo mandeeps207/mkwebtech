@@ -19,12 +19,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Fixify - Shopify Customer Order Editing",
-  description: "Let eligible Shopify customers correct shipping details, variants, and quantities before fulfillment with merchant-controlled order editing.",
+  title: "Fixify - Shopify Order Editing App",
+  description: "Let customers update eligible shipping addresses, variants, and quantities from Shopify Customer Accounts while merchants stay in control.",
   alternates: { canonical: "/fixify" },
   openGraph: {
-    title: "Fixify - Shopify Customer Order Editing | MK WebTech",
-    description: "Customer-friendly, merchant-controlled order editing for eligible Shopify orders.",
+    title: "Fixify - Shopify Order Editing App | MK WebTech",
+    description: "Customer-friendly, merchant-controlled editing for eligible unfulfilled Shopify orders.",
     url: "/fixify",
     type: "website"
   }
@@ -38,7 +38,7 @@ const features = [
   },
   {
     title: "Variant changes",
-    description: "Customers can switch between eligible variants when the change does not alter the order total.",
+    description: "Customers can switch between eligible variants of the same product when the change is financially neutral.",
     icon: Palette
   },
   {
@@ -65,11 +65,10 @@ const features = [
 
 const steps = [
   "Install and configure Fixify for your Shopify store.",
-  "Choose supported editing permissions and an editing window.",
   "A customer opens an eligible order in Shopify Customer Accounts.",
-  "The customer selects Edit order and requests a supported change.",
-  "Fixify validates the order and requested change against Shopify.",
-  "The eligible edit is completed and appears in Activity for review."
+  "Fixify validates ownership, order eligibility, and merchant rules.",
+  "The customer previews and confirms an allowed edit.",
+  "Shopify updates the order and Fixify records the completed activity."
 ];
 
 const faqs = [
@@ -91,7 +90,7 @@ const faqs = [
   },
   {
     question: "Do quantity or variant changes require a payment or refund?",
-    answer: "The currently supported experience is limited to eligible changes that do not require an additional payment or refund."
+    answer: "The launch experience is limited to eligible changes that do not require an additional payment or refund."
   }
 ];
 
@@ -107,16 +106,16 @@ export default function FixifyPage() {
               Shopify order editing
             </Badge>
             <h1 className="mt-6 text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">Fixify</h1>
-            <p className="mt-4 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">Customer-friendly order editing for Shopify</p>
+            <p className="mt-4 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">Give customers a simple way to correct eligible Shopify orders after purchase.</p>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-              Let customers correct eligible order details before fulfillment while you retain control over which supported changes are allowed and for how long.
+              Authenticated customers can make permitted changes from Shopify Customer Accounts while you retain control over which edits are allowed and for how long.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button size="lg" asChild>
-                <Link href="/contact?product=fixify">Contact us about Fixify <ArrowRight className="h-4 w-4" /></Link>
+                <Link href="#pricing">View pricing <ArrowRight className="h-4 w-4" /></Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/fixify/privacy-policy">Privacy policy</Link>
+                <Link href="/contact?product=fixify">Contact support</Link>
               </Button>
             </div>
           </div>
@@ -132,7 +131,7 @@ export default function FixifyPage() {
             <div className="space-y-3 p-5">
               {[
                 ["Shipping address", "Correct delivery details", MapPin],
-                ["Variant", "Change size or color", Palette],
+                ["Variant", "Change an eligible same-product option", Palette],
                 ["Quantity", "Adjust eligible quantities", PackageCheck]
               ].map(([title, detail, Icon]) => (
                 <div key={title as string} className="flex items-center gap-4 rounded-lg border border-border bg-background p-4">
@@ -203,28 +202,52 @@ export default function FixifyPage() {
       </section>
 
       <section className="container py-20">
-        <SectionHeading eyebrow="Pricing" title="Start free, then scale with your store" description="Plans are billed through Shopify when the app is available for installation." />
-        <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
-          {[
-            { name: "Free", price: "$0", features: ["Up to 5 successfully completed customer edits per month", "Editing window up to 60 minutes"] },
-            { name: "Pro", price: "$9.90/month", features: ["Unlimited successfully completed customer edits", "Extended editing window up to 24 hours"] }
-          ].map((plan, index) => (
-            <div key={plan.name} className={`rounded-lg border bg-card p-7 shadow-sm ${index === 1 ? "border-teal-500 shadow-soft" : "border-border"}`}>
-              <h3 className="text-xl font-semibold">{plan.name}</h3>
-              <div className="mt-4 text-3xl font-semibold">{plan.price}</div>
-              <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex gap-2">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button className="mt-8 w-full" variant={index === 1 ? "default" : "outline"} asChild>
-                <Link href="/contact?product=fixify">Contact us about Fixify</Link>
-              </Button>
-            </div>
-          ))}
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div>
+            <Badge variant="secondary">Eligibility</Badge>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">Editing stays within clear order limits.</h2>
+          </div>
+          <ul className="grid gap-4 text-sm leading-6 text-muted-foreground sm:grid-cols-2">
+            {[
+              "Edits apply only to eligible unfulfilled orders.",
+              "Fulfilled, cancelled, and otherwise ineligible orders cannot be edited.",
+              "Variant changes must use an eligible variant of the same product and be financially neutral.",
+              "Quantity changes requiring an additional payment or refund are not automatically completed in the launch version."
+            ].map((item) => (
+              <li key={item} className="flex gap-3 rounded-lg border border-border bg-card p-4">
+                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-teal-600" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="pricing" className="scroll-mt-20 border-y border-border bg-muted/25 py-20">
+        <div className="container">
+          <SectionHeading eyebrow="Pricing" title="Simple plans for every stage" description="Paid plan charges are handled through Shopify billing. Pro has no trial." />
+          <div className="mx-auto mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+            {[
+              { name: "Free", price: "$0", features: ["5 completed edits per UTC month", "Editing window up to 60 minutes"] },
+              { name: "Pro", price: "$9.90/month", features: ["Unlimited completed edits", "Editing window up to 24 hours", "No trial"] }
+            ].map((plan, index) => (
+              <div key={plan.name} className={`rounded-lg border bg-card p-7 shadow-sm ${index === 1 ? "border-teal-500 shadow-soft" : "border-border"}`}>
+                <h3 className="text-xl font-semibold">{plan.name}</h3>
+                <div className="mt-4 text-3xl font-semibold">{plan.price}</div>
+                <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button className="mt-8 w-full" variant={index === 1 ? "default" : "outline"} asChild>
+                  <Link href="/contact?product=fixify">Contact us about Fixify</Link>
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -242,6 +265,10 @@ export default function FixifyPage() {
           <Button className="mt-8 bg-background text-foreground hover:bg-background/90" size="lg" asChild>
             <Link href="/contact?product=fixify">Contact us about Fixify <ArrowRight className="h-4 w-4" /></Link>
           </Button>
+          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-background/70">
+            <Link href="/fixify/privacy-policy" className="underline underline-offset-4 hover:text-background">Privacy Policy</Link>
+            <Link href="/contact?product=fixify" className="underline underline-offset-4 hover:text-background">Contact / Support</Link>
+          </div>
         </div>
       </section>
     </>

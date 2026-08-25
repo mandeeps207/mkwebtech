@@ -155,7 +155,7 @@ export default function HomePage() {
           <div className="rounded-lg border border-dashed border-border bg-card p-8 shadow-sm">
             <div className="text-sm font-medium text-muted-foreground">Shopify order editing</div>
             <div className="mt-3 text-3xl font-semibold">Fixify</div>
-            <p className="mt-3 text-muted-foreground">Merchant-controlled shipping address, variant, and quantity changes for eligible orders.</p>
+            <p className="mt-3 text-muted-foreground">Merchant-controlled shipping address, same-product variant, and financially neutral quantity changes for eligible orders.</p>
           </div>
         </div>
       </section>
