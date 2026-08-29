@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Send } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import Script from "next/script";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -14,26 +16,88 @@ const contactSchema = z.object({
   email: z.string().email(),
   store: z.string().max(253),
   subject: z.enum(["Fixify support", "Product support", "Implementation help", "Partnership", "Other"]),
-  message: z.string().min(10)
+  message: z.string().min(10).max(5000),
+  website: z.string().optional()
 });
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (container: HTMLElement, options: Record<string, unknown>) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
 
 export function ContactForm() {
   const searchParams = useSearchParams();
   const isFixify = searchParams.get("product")?.toLowerCase() === "fixify";
+  const product = searchParams.get("product")?.trim().slice(0, 100) ?? "";
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const turnstileContainer = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+  const [scriptReady, setScriptReady] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [status, setStatus] = useState<{ type: "idle" | "success" | "error"; message: string }>({ type: "idle", message: "" });
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", store: "", subject: isFixify ? "Fixify support" : "Product support", message: "" }
+    defaultValues: { name: "", email: "", store: "", subject: isFixify ? "Fixify support" : "Product support", message: "", website: "" }
   });
 
-  const submit = (values: z.infer<typeof contactSchema>) => {
-    const subject = encodeURIComponent(`${values.subject} - ${values.name}`);
-    const store = values.store.trim() ? `\nStore/domain: ${values.store.trim()}` : "";
-    const body = encodeURIComponent(`Name: ${values.name}\nReply email: ${values.email}${store}\n\n${values.message}`);
-    window.location.href = `mailto:mkwebtecindia@gmail.com?subject=${subject}&body=${body}`;
+  const resetTurnstile = useCallback(() => {
+    setTurnstileToken("");
+    if (widgetId.current && window.turnstile) window.turnstile.reset(widgetId.current);
+  }, []);
+
+  useEffect(() => {
+    if (!scriptReady || !siteKey || !turnstileContainer.current || !window.turnstile || widgetId.current) return;
+    widgetId.current = window.turnstile.render(turnstileContainer.current, {
+      sitekey: siteKey,
+      callback: (token: string) => setTurnstileToken(token),
+      "expired-callback": () => setTurnstileToken(""),
+      "error-callback": () => {
+        setTurnstileToken("");
+        setStatus({ type: "error", message: "The security check could not load. Please try again." });
+      },
+      theme: "auto"
+    });
+
+    return () => {
+      if (widgetId.current && window.turnstile) window.turnstile.remove(widgetId.current);
+      widgetId.current = null;
+    };
+  }, [scriptReady, siteKey]);
+
+  const submit = async (values: z.infer<typeof contactSchema>) => {
+    setStatus({ type: "idle", message: "" });
+    if (!turnstileToken) {
+      setStatus({ type: "error", message: "Please complete the security check." });
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, product, turnstileToken })
+      });
+      const result = await response.json().catch(() => ({})) as { message?: string };
+
+      if (!response.ok) throw new Error(result.message || "Unable to send your message right now. Please try again.");
+
+      form.reset({ name: "", email: "", store: "", subject: isFixify ? "Fixify support" : "Product support", message: "", website: "" });
+      setStatus({ type: "success", message: result.message || "Thanks! Your message has been sent. We'll get back to you soon." });
+    } catch (error) {
+      setStatus({ type: "error", message: error instanceof Error ? error.message : "Unable to send your message right now. Please try again." });
+    } finally {
+      resetTurnstile();
+    }
   };
 
   return (
     <form onSubmit={form.handleSubmit(submit)} className="space-y-5 rounded-lg border border-border bg-card p-6 shadow-sm">
+      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" strategy="afterInteractive" onReady={() => setScriptReady(true)} />
       <div className="space-y-2">
         <label htmlFor="contact-name" className="text-sm font-medium">Name</label>
         <Input id="contact-name" autoComplete="name" placeholder="Your name" {...form.register("name")} />
@@ -67,8 +131,18 @@ export function ContactForm() {
         <Textarea id="contact-message" placeholder="Tell us about your store and how we can help" {...form.register("message")} />
         {form.formState.errors.message ? <p className="text-sm text-destructive">Enter at least 10 characters.</p> : null}
       </div>
+      <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input id="contact-website" tabIndex={-1} autoComplete="off" {...form.register("website")} />
+      </div>
       <p className="text-sm leading-6 text-muted-foreground">For Fixify support, describe the issue and include your Shopify store domain. Do not include customer passwords, payment details, API keys, access tokens, or other sensitive customer/order information.</p>
-      <Button type="submit"><Send className="h-4 w-4" /> Open email draft</Button>
+      {siteKey ? <div ref={turnstileContainer} aria-label="Security check" /> : <p className="text-sm text-destructive">The contact form is temporarily unavailable.</p>}
+      <div aria-live="polite" role="status">
+        {status.message ? <p className={`text-sm ${status.type === "success" ? "text-teal-700 dark:text-teal-300" : "text-destructive"}`}>{status.message}</p> : null}
+      </div>
+      <Button type="submit" disabled={form.formState.isSubmitting || !siteKey}>
+        <Send className="h-4 w-4" /> {form.formState.isSubmitting ? "Sending..." : "Send message"}
+      </Button>
     </form>
   );
 }
