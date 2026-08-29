@@ -1,18 +1,26 @@
 ---
 title: WordPress Plugin Setup
-description: Configure MK WebTech WordPress plugins on single-site and multisite installs.
+description: Install CTA Studio or Variation Swatches for WooCommerce from WordPress.org and find the correct product-specific setup path.
 section: WordPress
 order: 3
 ---
 
-## Install the plugin
+## Install from WordPress.org
 
-Upload the ZIP, activate the plugin, and open the MK WebTech settings page.
+Both current MK WebTech WordPress plugins are available free from the official directory. In WordPress admin, open **Plugins -> Add New**, search for the exact plugin name, choose **Install Now**, and then activate it.
 
-```php
-add_filter('mkwebtech_plugin_enabled', '__return_true');
-```
+## MkWebTech CTA Studio
 
-## Updates
+After activation, go to **CTAs -> Add New**. Choose Inline, Sticky Bar, Popup, or Floating Buttons, then configure the content, design, visibility, animation, placement, and optional countdown timer.
 
-Commercial plugins receive signed updates through the WordPress admin.
+Review the [CTA Studio product documentation](/products/mkwebtech-cta-studio#installation) for the supported setup sequence and WordPress.org support link.
+
+## Variation Swatches for WooCommerce
+
+Install and activate WooCommerce first. Then install **MKWebTech Variation Swatches for WooCommerce**, create or edit a global product attribute, choose an MK Color, MK Dual Color, or MK Image attribute type, and configure its terms.
+
+Review the [Variation Swatches installation guide](/products/mkwebtech-variation-swatches-for-woocommerce#installation) for the current verified workflow.
+
+## Updates and support
+
+Updates for these free plugins are delivered through the standard WordPress.org update flow. Use each plugin's WordPress.org support forum or the [MK WebTech contact page](/contact) for help.

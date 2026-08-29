@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 const links = [
   ["Home", "/"],
   ["Products", "/products"],
+  ["Services", "/services"],
   ["Documentation", "/docs"],
   ["About", "/about"],
   ["Contact", "/contact"]
@@ -49,14 +50,22 @@ export function Navbar() {
           <Button className="hidden md:inline-flex" asChild>
             <Link href="/contact">Start a project</Link>
           </Button>
-          <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setOpen((value) => !value)} aria-label="Menu">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setOpen((value) => !value)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-navigation"
+          >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
       </div>
       {open ? (
         <div className="border-t border-border bg-background md:hidden">
-          <nav className="container grid gap-1 py-3">
+          <nav id="mobile-navigation" className="container grid gap-1 py-3" aria-label="Mobile navigation">
             {links.map(([label, href]) => (
               <Link key={href} href={href} className="rounded-md px-3 py-2 text-sm" onClick={() => setOpen(false)}>
                 {label}

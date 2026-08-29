@@ -33,6 +33,8 @@ declare global {
 export function ContactForm() {
   const searchParams = useSearchParams();
   const isFixify = searchParams.get("product")?.toLowerCase() === "fixify";
+  const isCustomProject = searchParams.get("subject")?.toLowerCase() === "custom-development";
+  const defaultSubject = isFixify ? "Fixify support" : isCustomProject ? "Implementation help" : "Product support";
   const product = searchParams.get("product")?.trim().slice(0, 100) ?? "";
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const turnstileContainer = useRef<HTMLDivElement>(null);
@@ -42,7 +44,7 @@ export function ContactForm() {
   const [status, setStatus] = useState<{ type: "idle" | "success" | "error"; message: string }>({ type: "idle", message: "" });
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", store: "", subject: isFixify ? "Fixify support" : "Product support", message: "", website: "" }
+    defaultValues: { name: "", email: "", store: "", subject: defaultSubject, message: "", website: "" }
   });
 
   const resetTurnstile = useCallback(() => {
@@ -86,7 +88,7 @@ export function ContactForm() {
 
       if (!response.ok) throw new Error(result.message || "Unable to send your message right now. Please try again.");
 
-      form.reset({ name: "", email: "", store: "", subject: isFixify ? "Fixify support" : "Product support", message: "", website: "" });
+      form.reset({ name: "", email: "", store: "", subject: defaultSubject, message: "", website: "" });
       setStatus({ type: "success", message: result.message || "Thanks! Your message has been sent. We'll get back to you soon." });
     } catch (error) {
       setStatus({ type: "error", message: error instanceof Error ? error.message : "Unable to send your message right now. Please try again." });

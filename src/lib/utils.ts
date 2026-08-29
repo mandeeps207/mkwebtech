@@ -6,8 +6,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function absoluteUrl(path = "") {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://mkwebtech.com";
-  return `${base}${path}`;
+  const base = (process.env.NEXT_PUBLIC_SITE_URL || "https://mkwebtech.com").replace(/\/$/, "");
+  const normalizedPath = path && !path.startsWith("/") ? `/${path}` : path;
+  return `${base}${normalizedPath}`;
 }
 
 export function formatDate(date: string) {

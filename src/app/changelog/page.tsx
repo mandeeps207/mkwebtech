@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { JsonLd } from "@/components/json-ld";
+import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Changelog", description: "Release notes for MK WebTech products." };
+const description = "Review recent MkWebTech CTA Studio releases, including analytics, floating-button, countdown, visibility, and frontend improvements.";
+export const metadata: Metadata = pageMetadata({ title: "CTA Studio Changelog & Release Notes", description, path: "/changelog" });
 
 const releases = [
   {
@@ -37,7 +42,12 @@ const releases = [
 export default function ChangelogPage() {
   return (
     <section className="container py-16">
-      <SectionHeading eyebrow="Changelog" title="MkWebTech CTA Studio release notes" />
+      <JsonLd nodes={[
+        webPageSchema({ path: "/changelog", name: "MkWebTech CTA Studio release notes", description, breadcrumbs: [{ name: "Home", path: "/" }, { name: "Changelog", path: "/changelog" }] }),
+        breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Changelog", path: "/changelog" }])
+      ]} />
+      <Breadcrumb items={[{ label: "Changelog" }]} />
+      <div className="mt-8"><SectionHeading level="h1" eyebrow="Changelog" title="MkWebTech CTA Studio release notes" description="Verified release summaries for the WordPress call-to-action plugin." /></div>
       <div className="mx-auto mt-12 max-w-3xl space-y-6">
         {releases.map((release) => (
           <div key={release.version} className="rounded-lg border border-border bg-card p-6 shadow-sm">
@@ -51,6 +61,7 @@ export default function ChangelogPage() {
           </div>
         ))}
       </div>
+      <p className="mx-auto mt-8 max-w-3xl text-sm leading-6 text-muted-foreground">Review the complete feature set, installation path, and support options on the <Link href="/products/mkwebtech-cta-studio" className="font-medium text-foreground underline underline-offset-4">CTA Studio product page</Link>.</p>
     </section>
   );
 }

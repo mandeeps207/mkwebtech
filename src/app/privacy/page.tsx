@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
+import { pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Privacy Policy", description: "MK WebTech privacy policy." };
+const description = "Read how MK WebTech handles information used for products, support, billing, communication, security, and product operations.";
+export const metadata: Metadata = pageMetadata({ title: "Privacy Policy", description, path: "/privacy" });
 
 export default function PrivacyPage() {
   return (
     <section className="container max-w-3xl py-16">
+      <JsonLd nodes={[webPageSchema({ path: "/privacy", name: "MK WebTech Privacy Policy", description })]} />
       <h1 className="text-4xl font-semibold tracking-tight">Privacy Policy</h1>
       <div className="prose-mk mt-8">
         <p>MK WebTech collects only the information needed to provide products, support, billing, and product communication.</p>

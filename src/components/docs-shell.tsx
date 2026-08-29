@@ -1,9 +1,11 @@
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, FileText, Menu, Search } from "lucide-react";
+import { ChevronLeft, ChevronRight, FileText, Menu } from "lucide-react";
+import { Breadcrumb } from "@/components/breadcrumb";
+import { JsonLd } from "@/components/json-ld";
 import { MdxContent } from "@/components/mdx-content";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { getTableOfContents } from "@/lib/content";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import type { DocPage } from "@/types/content";
 
@@ -38,29 +40,24 @@ function DocsNav({ docs, activeSlug }: { docs: DocPage[]; activeSlug: string }) 
   );
 }
 
-function DocsSearch() {
-  return (
-    <div>
-      <label htmlFor="docs-search" className="sr-only">
-        Search documentation
-      </label>
-      <div className="relative">
-        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-        <Input id="docs-search" className="pl-9" placeholder="Search docs" data-search-index="/docs/search-index.json" />
-      </div>
-      <p className="mt-2 text-xs text-muted-foreground">Search-ready index: /docs/search-index.json</p>
-    </div>
-  );
-}
-
 export function DocsShell({ docs, doc }: { docs: DocPage[]; doc: DocPage }) {
   const index = docs.findIndex((item) => item.slug === doc.slug);
   const previous = docs[index - 1];
   const next = docs[index + 1];
   const toc = getTableOfContents(doc.content);
+  const path = `/docs/${doc.slug}`;
+  const breadcrumbs = [
+    { name: "Home", path: "/" },
+    { name: "Documentation", path: "/docs" },
+    { name: doc.title, path }
+  ];
 
   return (
     <div className="border-t border-border">
+      <JsonLd nodes={[
+        webPageSchema({ path, name: doc.title, description: doc.description, breadcrumbs }),
+        breadcrumbSchema(breadcrumbs)
+      ]} />
       <div className="container lg:hidden">
         <details className="border-b border-border py-4">
           <summary className="flex cursor-pointer list-none items-center justify-between rounded-md border border-border bg-card px-4 py-3 text-sm font-medium">
@@ -71,7 +68,6 @@ export function DocsShell({ docs, doc }: { docs: DocPage[]; doc: DocPage }) {
             <ChevronRight className="h-4 w-4" />
           </summary>
           <div className="mt-4 space-y-5 rounded-lg border border-border bg-card p-4">
-            <DocsSearch />
             <DocsNav docs={docs} activeSlug={doc.slug} />
           </div>
         </details>
@@ -80,14 +76,12 @@ export function DocsShell({ docs, doc }: { docs: DocPage[]; doc: DocPage }) {
       <div className="container grid gap-10 py-10 lg:grid-cols-[280px_minmax(0,1fr)_220px]">
         <aside className="hidden lg:block">
           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-3">
-            <DocsSearch />
-            <div className="mt-8">
-              <DocsNav docs={docs} activeSlug={doc.slug} />
-            </div>
+            <DocsNav docs={docs} activeSlug={doc.slug} />
           </div>
         </aside>
 
         <article className="min-w-0">
+          <Breadcrumb items={[{ label: "Documentation", href: "/docs" }, { label: doc.title }]} />
           <header className="mb-8 border-b border-border pb-8">
             <div className="text-sm font-medium text-teal-600 dark:text-teal-300">{doc.section}</div>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-balance md:text-5xl">{doc.title}</h1>

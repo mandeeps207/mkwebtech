@@ -14,9 +14,11 @@ import {
 import { Breadcrumb } from "@/components/breadcrumb";
 import { FAQ } from "@/components/faq";
 import { MdxContent } from "@/components/mdx-content";
+import { JsonLd } from "@/components/json-ld";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/types/content";
+import { breadcrumbSchema, softwareApplicationSchema, webPageSchema } from "@/lib/seo";
 
 function ProductSection({
   id,
@@ -39,6 +41,17 @@ function ProductSection({
 }
 
 export function ProductDetail({ product }: { product: Product }) {
+  const path = `/products/${product.slug}`;
+  const breadcrumbs = [
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+    { name: product.title, path }
+  ];
+  const productHeading = product.slug === "mkwebtech-cta-studio"
+    ? "CTA Studio: a call-to-action plugin for WordPress"
+    : product.slug === "mkwebtech-variation-swatches-for-woocommerce"
+      ? "Accessible variation swatches for WooCommerce"
+      : product.title;
   const screenshots =
     product.screenshots ||
     product.gallery.map((src, index) => ({
@@ -63,6 +76,17 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <article>
+      <JsonLd nodes={[
+        webPageSchema({ path, name: product.title, description: product.description, breadcrumbs }),
+        breadcrumbSchema(breadcrumbs),
+        softwareApplicationSchema({
+          name: product.title,
+          description: product.description,
+          path,
+          image: product.heroImage.endsWith(".svg") ? undefined : product.heroImage,
+          free: product.pricing.toLowerCase().startsWith("free")
+        })
+      ]} />
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,rgba(20,184,166,0.12),transparent_35%),linear-gradient(250deg,rgba(99,102,241,0.10),transparent_40%)]" />
         <div className="container py-10">
@@ -70,7 +94,7 @@ export function ProductDetail({ product }: { product: Product }) {
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
               <Badge variant="accent">{product.category === "shopify" ? "Shopify App" : "WordPress Plugin"}</Badge>
-              <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance md:text-6xl">{product.title}</h1>
+              <h1 className="mt-5 text-5xl font-semibold tracking-tight text-balance md:text-6xl">{productHeading}</h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">{product.description}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild>
@@ -225,6 +249,16 @@ export function ProductDetail({ product }: { product: Product }) {
               ))}
             </div>
           </ProductSection>
+
+          <div className="mt-10 rounded-lg border border-border bg-muted/30 p-6">
+            <h2 className="text-xl font-semibold">Need a workflow beyond the plugin?</h2>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              MK WebTech also builds custom WordPress and WooCommerce functionality for store-specific integrations, admin tools, and commerce workflows.
+            </p>
+            <Link href="/services/wordpress-woocommerce-development" className="mt-4 inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4">
+              Explore WordPress and WooCommerce development <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </article>

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
+import { pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Terms", description: "MK WebTech terms of service." };
+const description = "Read the terms governing responsible use, licensing, support, and availability of MK WebTech products and services.";
+export const metadata: Metadata = pageMetadata({ title: "Terms of Service", description, path: "/terms" });
 
 export default function TermsPage() {
   return (
     <section className="container max-w-3xl py-16">
+      <JsonLd nodes={[webPageSchema({ path: "/terms", name: "MK WebTech Terms of Service", description })]} />
       <h1 className="text-4xl font-semibold tracking-tight">Terms of Service</h1>
       <div className="prose-mk mt-8">
         <p>By using MK WebTech products, you agree to use them responsibly and in compliance with applicable platform rules and laws.</p>

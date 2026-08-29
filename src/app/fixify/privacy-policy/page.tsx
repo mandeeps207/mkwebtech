@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
+import { pageMetadata, webPageSchema } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Fixify Privacy Policy",
-  description: "Learn how Fixify processes merchant, customer, and order information when providing Shopify order-editing functionality.",
-  alternates: { canonical: "/fixify/privacy-policy" },
-  openGraph: {
-    title: "Fixify Privacy Policy | MK WebTech",
-    description: "How Fixify processes information to provide Shopify order-editing functionality.",
-    url: "/fixify/privacy-policy",
-    type: "article"
-  }
-};
+const description = "Learn how Fixify processes merchant, customer, and order information when providing Shopify shipping-address editing functionality.";
+export const metadata: Metadata = pageMetadata({ title: "Fixify Privacy Policy", description, path: "/fixify/privacy-policy" });
 
 export default function FixifyPrivacyPolicyPage() {
   return (
     <section className="container max-w-3xl py-16">
+      <JsonLd nodes={[webPageSchema({ path: "/fixify/privacy-policy", name: "Fixify Privacy Policy", description })]} />
       <Link href="/fixify" className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground">
         <ArrowLeft className="h-4 w-4" /> Back to Fixify
       </Link>
@@ -26,7 +20,7 @@ export default function FixifyPrivacyPolicyPage() {
       <div className="prose-mk mt-8">
         <h2>Scope</h2>
         <p>
-          This policy applies to Fixify, the Shopify order-editing application operated by MK WebTech. It explains the categories of information Fixify processes, why that information is needed, and the choices available to merchants and customers. Fixify integrates with Shopify and uses Shopify APIs to provide its functionality. MK WebTech operates Fixify independently and is not Shopify.
+          This policy applies to Fixify, the Shopify shipping-address editing application operated by MK WebTech. It explains the categories of information Fixify processes, why that information is needed, and the choices available to merchants and customers. Fixify integrates with Shopify and uses Shopify APIs to provide its functionality. MK WebTech operates Fixify independently and is not Shopify.
         </p>
 
         <h2>Information processed</h2>
@@ -39,7 +33,7 @@ export default function FixifyPrivacyPolicyPage() {
         </ul>
 
         <h3>Customer and order information</h3>
-        <p>To provide order editing, Fixify may process:</p>
+        <p>To provide eligible shipping-address corrections, Fixify may process:</p>
         <ul>
           <li>Shopify customer or Customer Account identifiers.</li>
           <li>Order identifiers, order state, fulfillment state, and other eligibility information.</li>
@@ -47,7 +41,7 @@ export default function FixifyPrivacyPolicyPage() {
           <li>Customer name and shipping address when needed for an eligible shipping-address edit.</li>
         </ul>
         <p>
-          Fixify does not currently request customer email addresses or phone numbers for its core Customer Account order-editing workflow. Shopify or a separate support interaction may process contact information under its own applicable terms and privacy practices.
+          Fixify does not currently request customer email addresses or phone numbers for its core Customer Account shipping-address workflow. Shopify or a separate support interaction may process contact information under its own applicable terms and privacy practices.
         </p>
 
         <h3>Pseudonymous references and access records</h3>

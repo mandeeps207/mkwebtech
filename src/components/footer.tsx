@@ -3,14 +3,15 @@ import Link from "next/link";
 
 const columns = [
   { title: "Company", links: [["About", "/about"], ["Contact", "/contact"]] },
-  { title: "Resources", links: [["Fixify", "/fixify"], ["Docs", "/docs"], ["Changelog", "/changelog"]] },
+  { title: "Products", links: [["WordPress Plugins", "/products/wordpress"], ["Shopify Apps", "/products/shopify"], ["Fixify", "/fixify"]] },
+  { title: "Resources", links: [["Services", "/services"], ["Documentation", "/docs"], ["Changelog", "/changelog"]] },
   { title: "Legal", links: [["Privacy", "/privacy"], ["Fixify Privacy", "/fixify/privacy-policy"], ["Terms", "/terms"]] }
 ];
 
 export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/30">
-      <div className="container grid gap-10 py-12 md:grid-cols-[1.5fr_2fr]">
+      <div className="container grid gap-10 py-12 md:grid-cols-[1.2fr_2.8fr]">
         <div>
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <span className="relative block h-10 w-36">
@@ -19,10 +20,10 @@ export function Footer() {
             </span>
           </Link>
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
-            Premium Shopify apps and WordPress plugins built for fast teams, better stores, and resilient commerce workflows.
+            Practical WordPress plugins, Shopify apps, and custom ecommerce development for clearly defined commerce workflows.
           </p>
         </div>
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {columns.map((column) => (
             <div key={column.title}>
               <h3 className="text-sm font-semibold">{column.title}</h3>
