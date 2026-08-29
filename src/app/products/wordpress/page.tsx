@@ -8,7 +8,7 @@ import { Breadcrumb } from "@/components/breadcrumb";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
-const description = "Browse free MK WebTech WordPress.org plugins for calls to action, campaign analytics, and accessible WooCommerce variation swatches.";
+const description = "Browse free MK WebTech WordPress.org plugins for Gutenberg conversion blocks, calls to action, campaign analytics, and WooCommerce variation swatches.";
 export const metadata: Metadata = pageMetadata({ title: "WordPress & WooCommerce Plugins", description, path: "/products/wordpress" });
 
 export default function WordPressProductsPage() {
@@ -20,7 +20,7 @@ export default function WordPressProductsPage() {
       ]} />
       <Breadcrumb items={[{ label: "Products", href: "/products" }, { label: "WordPress plugins" }]} />
       <div className="mt-8">
-        <SectionHeading level="h1" eyebrow="WordPress" title="WordPress and WooCommerce plugins" description="Two free WordPress.org plugins for building measurable calls to action and presenting WooCommerce product variations as accessible visual choices." />
+        <SectionHeading level="h1" eyebrow="WordPress" title="WordPress and WooCommerce plugins" description="Three free WordPress.org plugins for Gutenberg campaigns, measurable calls to action, and accessible WooCommerce product variations." />
       </div>
       <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{getProducts("wordpress").map((product) => <ProductCard key={product.slug} product={product} />)}</div>
       <div className="mt-12 rounded-lg border border-border bg-muted/30 p-7">

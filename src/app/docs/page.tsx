@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { getDocs } from "@/lib/content";
 import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
-const description = "Setup and usage guides for MK WebTech products, including CTA Studio, Variation Swatches for WooCommerce, and Fixify.";
+const description = "Setup and usage guides for MK WebTech products, including CTA Studio, Conversion Blocks, Variation Swatches for WooCommerce, and Fixify.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Product Documentation",

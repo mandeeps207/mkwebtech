@@ -51,7 +51,9 @@ export function ProductDetail({ product }: { product: Product }) {
     ? "CTA Studio: a call-to-action plugin for WordPress"
     : product.slug === "mkwebtech-variation-swatches-for-woocommerce"
       ? "Accessible variation swatches for WooCommerce"
-      : product.title;
+      : product.slug === "mkwebtech-conversion-blocks"
+        ? "Conversion-focused Gutenberg blocks for WordPress"
+        : product.title;
   const screenshots =
     product.screenshots ||
     product.gallery.map((src, index) => ({

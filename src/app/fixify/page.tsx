@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Check,
   ClipboardCheck,
   History,
   MapPin,
+  PlayCircle,
   Settings2,
   ShieldCheck,
-  ShoppingBag,
   UserRound
 } from "lucide-react";
 import { FAQ } from "@/components/faq";
@@ -20,7 +20,15 @@ import { JsonLd } from "@/components/json-ld";
 import { breadcrumbSchema, pageMetadata, softwareApplicationSchema, webPageSchema } from "@/lib/seo";
 
 const description = "Fixify supports eligible shipping-address corrections through Shopify Customer Accounts, with merchant-controlled eligibility and editing windows.";
-export const metadata: Metadata = pageMetadata({ title: "Shopify Shipping Address Editing App - Fixify", description, path: "/fixify" });
+export const metadata: Metadata = pageMetadata({
+  title: "Shopify Shipping Address Editing App - Fixify",
+  description,
+  path: "/fixify",
+  image: "/fixify-screenshot-4.jpg",
+  imageWidth: 1600,
+  imageHeight: 900,
+  imageAlt: "Fixify shipping-address correction screen in Shopify Customer Accounts"
+});
 
 const features = [
   {
@@ -83,15 +91,17 @@ export default function FixifyPage() {
       <JsonLd nodes={[
         webPageSchema({ path: "/fixify", name: "Fixify Shopify shipping-address editing app", description, breadcrumbs: [{ name: "Home", path: "/" }, { name: "Products", path: "/products" }, { name: "Fixify", path: "/fixify" }] }),
         breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }, { name: "Fixify", path: "/fixify" }]),
-        softwareApplicationSchema({ name: "Fixify", description, path: "/fixify" })
+        softwareApplicationSchema({ name: "Fixify", description, path: "/fixify", image: "/fixify-screenshot-4.jpg" })
       ]} />
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(120deg,rgba(20,184,166,0.10),transparent_38%),linear-gradient(250deg,rgba(99,102,241,0.08),transparent_44%)]" />
         <div className="container py-10"><Breadcrumb items={[{ label: "Products", href: "/products" }, { label: "Fixify" }]} /></div>
         <div className="container grid min-h-[calc(100vh-8rem)] items-center gap-12 pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:pb-20">
           <div>
+            <div className="mb-5 h-16 w-16 overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+              <Image src="/fixify-logo.jpg" alt="Fixify logo" width={64} height={64} className="h-full w-full object-cover" priority />
+            </div>
             <Badge variant="accent">
-              <ShoppingBag className="mr-1 h-3 w-3" />
               Shopify shipping-address editing
             </Badge>
             <h1 className="mt-6 text-5xl font-semibold tracking-tight text-balance sm:text-6xl lg:text-7xl">Let customers correct eligible Shopify shipping addresses with Fixify</h1>
@@ -109,37 +119,21 @@ export default function FixifyPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-border bg-card shadow-soft">
-            <div className="flex items-center justify-between border-b border-border px-5 py-4">
-              <div>
-                <div className="text-sm font-semibold">Order #1048</div>
-                <div className="mt-1 text-xs text-muted-foreground">Placed 12 minutes ago</div>
-              </div>
-              <Badge variant="secondary">Eligible to edit</Badge>
+          <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-soft">
+            <div className="relative aspect-video bg-muted">
+              <Image
+                src="/fixify-screenshot-4.jpg"
+                alt="Fixify Customer Account screen for reviewing a Shopify shipping-address correction"
+                fill
+                className="object-contain"
+                priority
+                sizes="(min-width: 1024px) 48vw, 100vw"
+              />
             </div>
-            <div className="space-y-3 p-5">
-              {[
-                ["Shipping address", "Correct delivery details", MapPin],
-                ["Merchant rules", "Check order eligibility and timing", Settings2],
-                ["Customer Account", "Use the authenticated order view", UserRound]
-              ].map(([title, detail, Icon]) => (
-                <div key={title as string} className="flex items-center gap-4 rounded-lg border border-border bg-background p-4">
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-teal-500/10 text-teal-700 dark:text-teal-300">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="font-medium">{title as string}</div>
-                    <div className="text-sm text-muted-foreground">{detail as string}</div>
-                  </div>
-                  <Check className="h-5 w-5 shrink-0 text-teal-600" />
-                </div>
-              ))}
-              <div className="flex items-center gap-2 pt-2 text-sm text-muted-foreground">
-                <ShieldCheck className="h-4 w-4 shrink-0 text-teal-600" />
-                Address corrections are checked against merchant rules and order status.
-              </div>
-            </div>
-          </div>
+            <figcaption className="border-t border-border px-5 py-4 text-sm text-muted-foreground">
+              Customers review an eligible shipping-address correction from their Shopify Customer Account.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -173,6 +167,38 @@ export default function FixifyPage() {
               <p className="mt-3 text-sm leading-6 text-muted-foreground">{description}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="container py-20">
+        <div className="grid overflow-hidden rounded-xl border border-border bg-card shadow-soft lg:grid-cols-[1fr_0.9fr]">
+          <div className="p-7 sm:p-10">
+            <Badge variant="secondary">Video walkthrough</Badge>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">See the Fixify workflow in action</h2>
+            <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
+              Watch a step-by-step product walkthrough on YouTube. Current availability and supported workflows are confirmed during onboarding.
+            </p>
+            <Button className="mt-6" asChild>
+              <a href="https://youtu.be/bpne7uWCfPE" target="_blank" rel="noreferrer">
+                <PlayCircle className="h-4 w-4" /> Watch the Fixify walkthrough
+              </a>
+            </Button>
+          </div>
+          <a
+            href="https://youtu.be/bpne7uWCfPE"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Watch the Fixify walkthrough on YouTube"
+            className="group grid min-h-72 place-items-center border-t border-border bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.18),transparent_45%),linear-gradient(135deg,rgba(34,197,94,0.14),rgba(255,255,255,0))] p-10 lg:border-l lg:border-t-0"
+          >
+            <div className="text-center">
+              <div className="mx-auto h-28 w-28 overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition group-hover:-translate-y-1">
+                <Image src="/fixify-logo.jpg" alt="" width={112} height={112} className="h-full w-full object-cover" />
+              </div>
+              <PlayCircle className="mx-auto mt-6 h-12 w-12 text-teal-600 transition group-hover:scale-110" aria-hidden="true" />
+              <span className="mt-3 block font-semibold">Open video on YouTube</span>
+            </div>
+          </a>
         </div>
       </section>
 

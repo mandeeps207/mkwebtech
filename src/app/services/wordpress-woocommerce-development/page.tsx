@@ -32,6 +32,7 @@ export default function WordPressWooCommerceDevelopmentPage() {
     ]}
     related={[
       { title: "MkWebTech CTA Studio", description: "A first-party WordPress plugin for inline CTAs, popups, sticky bars, floating buttons, countdowns, and conversion tracking.", href: "/products/mkwebtech-cta-studio", anchor: "Review CTA Studio" },
+      { title: "MKWebTech Conversion Blocks", description: "A first-party Gutenberg plugin for campaign blocks, ready-made patterns, and optional WooCommerce display targeting.", href: "/products/mkwebtech-conversion-blocks", anchor: "Review Conversion Blocks" },
       { title: "Variation Swatches for WooCommerce", description: "A first-party WooCommerce plugin for accessible color, dual-color, and image swatches.", href: "/products/mkwebtech-variation-swatches-for-woocommerce", anchor: "Review Variation Swatches" }
     ]}
   />;

@@ -22,7 +22,8 @@ describe("SEO foundations", () => {
       "https://mkwebtech.com/services",
       "https://mkwebtech.com/services/wordpress-woocommerce-development",
       "https://mkwebtech.com/services/shopify-app-development",
-      "https://mkwebtech.com/services/ecommerce-development"
+      "https://mkwebtech.com/services/ecommerce-development",
+      "https://mkwebtech.com/products/mkwebtech-conversion-blocks"
     ]));
   });
 

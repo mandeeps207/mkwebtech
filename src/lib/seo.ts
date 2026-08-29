@@ -9,13 +9,24 @@ type PageMetadataOptions = {
   description: string;
   path: string;
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageAlt?: string;
 };
 
 function brandedTitle(title: string) {
   return title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 }
 
-export function pageMetadata({ title, description, path, image = DEFAULT_SOCIAL_IMAGE }: PageMetadataOptions): Metadata {
+export function pageMetadata({
+  title,
+  description,
+  path,
+  image = DEFAULT_SOCIAL_IMAGE,
+  imageWidth = 1200,
+  imageHeight = 630,
+  imageAlt = `${SITE_NAME} - WordPress plugins, Shopify apps and development`
+}: PageMetadataOptions): Metadata {
   const fullTitle = brandedTitle(title);
   const imageUrl = image.startsWith("http://") || image.startsWith("https://") ? image : absoluteUrl(image);
 
@@ -29,7 +40,7 @@ export function pageMetadata({ title, description, path, image = DEFAULT_SOCIAL_
       url: absoluteUrl(path),
       siteName: SITE_NAME,
       type: "website",
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: `${SITE_NAME} - WordPress plugins, Shopify apps and development` }]
+      images: [{ url: imageUrl, width: imageWidth, height: imageHeight, alt: imageAlt }]
     },
     twitter: {
       card: "summary_large_image",

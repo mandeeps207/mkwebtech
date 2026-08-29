@@ -25,7 +25,7 @@ export default function ContactPage() {
       <div className="mx-auto mt-10 grid max-w-5xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="rounded-lg border border-border bg-card p-6 shadow-sm">
           <h2 className="font-semibold">Product support</h2>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">For CTA Studio or Variation Swatches, the product pages link to their official WordPress.org support forums and setup information.</p>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">For CTA Studio, Conversion Blocks, or Variation Swatches, the product pages link to their official WordPress.org support forums and setup information.</p>
           <Link href="/products/wordpress" className="mt-3 inline-block text-sm font-medium underline underline-offset-4">Find WordPress plugin support</Link>
           <h2 className="mt-8 font-semibold">Fixify enquiries</h2>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">Select Fixify support and include your Shopify store domain plus a clear description of the shipping-address workflow or issue.</p>

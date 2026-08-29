@@ -25,7 +25,7 @@ export default function AboutPage() {
 
       <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
         {[
-          ["Products with defined jobs", "CTA Studio, Variation Swatches for WooCommerce, and Fixify each address a specific workflow with documented features and limits."],
+          ["Products with defined jobs", "CTA Studio, Conversion Blocks, Variation Swatches for WooCommerce, and Fixify each address a specific workflow with documented features and limits."],
           ["Work with platform conventions", "Implementations account for the APIs, lifecycle events, permissions, compatibility requirements, and extension points of the underlying platform."],
           ["Keep delivery supportable", "Clear scope, readable code, testing of important paths, documentation, and upgrade planning matter as much as the first release."]
         ].map(([title, body]) => (
@@ -40,7 +40,7 @@ export default function AboutPage() {
       <div className="mx-auto mt-14 grid max-w-5xl gap-10 border-t border-border pt-12 lg:grid-cols-2">
         <div>
           <h2 className="text-2xl font-semibold">Current product work</h2>
-          <p className="mt-4 leading-7 text-muted-foreground">The public catalog includes two free WordPress.org plugins and product information for Fixify, a Shopify app for controlled shipping-address corrections. Product pages explain what each tool does, who it helps, and where to get support.</p>
+          <p className="mt-4 leading-7 text-muted-foreground">The public catalog includes three free WordPress.org plugins and product information for Fixify, a Shopify app for controlled shipping-address corrections. Product pages explain what each tool does, who it helps, and where to get support.</p>
           <Link href="/products" className="mt-5 inline-flex items-center gap-2 font-medium underline underline-offset-4">Explore MK WebTech products <ArrowRight className="h-4 w-4" /></Link>
         </div>
         <div>

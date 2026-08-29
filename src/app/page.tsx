@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
 const faqs = [
   {
     question: "Which MK WebTech products are available now?",
-    answer: "MkWebTech CTA Studio and MKWebTech Variation Swatches for WooCommerce are available free on WordPress.org. Fixify is a Shopify shipping-address editing app, with product details and an enquiry path available on this site."
+    answer: "MkWebTech CTA Studio, MKWebTech Conversion Blocks, and MKWebTech Variation Swatches for WooCommerce are available free on WordPress.org. Fixify is a Shopify shipping-address editing app, with product details and an enquiry path available on this site."
   },
   {
     question: "Does MK WebTech build custom WordPress and WooCommerce functionality?",
@@ -55,7 +55,7 @@ export default function HomePage() {
               Practical WordPress plugins and Shopify apps for better commerce workflows
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-              MK WebTech builds focused software for website owners, store teams, and agencies. Current products cover WordPress calls to action, WooCommerce variation swatches, and controlled Shopify shipping-address corrections.
+              MK WebTech builds focused software for website owners, store teams, and agencies. Current products cover WordPress conversion tools, WooCommerce variation swatches, and controlled Shopify shipping-address corrections.
             </p>
             <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
               When an existing product is not the right fit, custom development is available for WordPress, WooCommerce, Shopify, and wider ecommerce integrations.
@@ -73,6 +73,7 @@ export default function HomePage() {
               <div className="mt-5 space-y-4">
                 {[
                   ["CTA Studio", "WordPress", "Build and track inline, popup, sticky, and floating CTAs.", "/products/mkwebtech-cta-studio"],
+                  ["Conversion Blocks", "WordPress", "Add campaign blocks and patterns in the native editor.", "/products/mkwebtech-conversion-blocks"],
                   ["Variation Swatches", "WooCommerce", "Present product options as accessible color and image swatches.", "/products/mkwebtech-variation-swatches-for-woocommerce"],
                   ["Fixify", "Shopify", "Let customers correct eligible shipping addresses within merchant controls.", "/fixify"]
                 ].map(([name, platform, detail, href]) => (
@@ -89,7 +90,7 @@ export default function HomePage() {
 
       <section className="container py-20">
         <SectionHeading eyebrow="Products" title="Software built around specific store and website tasks" description="Start with a published product when it matches the workflow. Each product page documents its capabilities, limits, setup path, and support options." />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {wordpressProducts.map((product) => <ProductCard key={product.slug} product={product} />)}
           <Link href="/fixify" className="group rounded-lg border border-border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
             <Badge variant="secondary"><ShoppingBag className="mr-1 h-3 w-3" /> Shopify App</Badge>
@@ -105,7 +106,7 @@ export default function HomePage() {
           <div className="rounded-lg border border-border bg-card p-7 shadow-sm">
             <Blocks className="h-6 w-6 text-teal-600" />
             <h2 className="mt-5 text-3xl font-semibold tracking-tight">WordPress and WooCommerce tools</h2>
-            <p className="mt-4 leading-7 text-muted-foreground">CTA Studio helps teams publish and measure calls to action without custom templates. Variation Swatches replaces supported variation dropdowns with visual controls while retaining WooCommerce&apos;s native select workflow.</p>
+            <p className="mt-4 leading-7 text-muted-foreground">CTA Studio helps publish and measure calls to action. Conversion Blocks adds Gutenberg-native campaign blocks and patterns. Variation Swatches replaces supported variation dropdowns with visual controls while retaining WooCommerce&apos;s native select workflow.</p>
             <Link href="/products/wordpress" className="mt-5 inline-flex items-center gap-2 font-medium underline underline-offset-4">Browse WordPress and WooCommerce plugins <ArrowRight className="h-4 w-4" /></Link>
           </div>
           <div className="rounded-lg border border-border bg-card p-7 shadow-sm">

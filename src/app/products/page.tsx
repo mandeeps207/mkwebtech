@@ -10,7 +10,7 @@ import { Breadcrumb } from "@/components/breadcrumb";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 
-const description = "Explore MK WebTech products for WordPress calls to action, WooCommerce variation swatches, and controlled Shopify shipping-address editing.";
+const description = "Explore MK WebTech products for WordPress conversion blocks and calls to action, WooCommerce variation swatches, and Shopify shipping-address editing.";
 export const metadata: Metadata = pageMetadata({ title: "WordPress Plugins & Shopify Apps", description, path: "/products" });
 
 export default function ProductsPage() {

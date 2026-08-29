@@ -58,7 +58,7 @@ export default function ServicesPage() {
         <div>
           <Badge variant="secondary">Existing product</Badge>
           <h2 className="mt-4 text-2xl font-semibold">Choose a published product for a supported, repeatable workflow</h2>
-          <p className="mt-3 leading-7 text-muted-foreground">CTA Studio, Variation Swatches for WooCommerce, and Fixify each solve a defined problem with documented capabilities and limits.</p>
+          <p className="mt-3 leading-7 text-muted-foreground">CTA Studio, Conversion Blocks, Variation Swatches for WooCommerce, and Fixify each solve a defined problem with documented capabilities and limits.</p>
           <Button className="mt-5" variant="outline" asChild><Link href="/products">Explore the product catalog</Link></Button>
         </div>
         <div>
